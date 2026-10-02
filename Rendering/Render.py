@@ -12,8 +12,14 @@ class Render:
             self.draw_node2d(root)
         
     def draw_node2d(self, node2d:Node2d):   
+        
         if node2d.render_item == None:
-            return
+            if len(node2d.children) == 0:
+                return
+            for child in node2d.children:
+                self.draw_node2d(child)
+            
+            
         
         render_item = node2d.render_item
         
