@@ -10,7 +10,7 @@ Pygame is used for real-time rendering and input handling, while pytest is used 
 
 ## Screenshot
 
-![Runing screenshot](docs/image/Screenshot 2026-10-03 043539.png)
+![Runing screenshot](docs/image/running.png)
 
 ## Current Features
 - Real-time physics simulation with state updates every frame.
