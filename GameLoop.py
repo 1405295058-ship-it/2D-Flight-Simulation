@@ -7,6 +7,7 @@ from Rendering.Render import Render
 from Simulation.InputManager import InputManager
 import numpy as np
 import pygame
+from Scene.Scene import Scene
 # pygame setup
 
 pygame.init()
@@ -31,21 +32,22 @@ atmosphere = Atmosphere()
 
 #翅膀初始化
 
-wing = Wing(10, "NACA2412", np.array([30.0, 0.0]))#surface area, 编号, 相对位置
+wing = Wing(10, "NACA2412", [30.0, 0.0], 0)#surface area, 编号, 相对位置
 
 #飞机初始化
 
 plane = AirCraft(
-    np.array([10,100]),#position
-    np.array([100,0]),#velocity
+    [10,100],#position
+    [100,0],#velocity
     10,#theta
     10000#mass
     )
 
 plane.wing = wing
 
-plane.thrust = 200.0 # N
+plane.thrust = 2000.0 # N
 
+plane.add_child(wing)
 
 #输入管理器初始化
 
@@ -60,7 +62,11 @@ SCREEN_HEIGHT = 720
 render = Render(screen, SCREEN_HEIGHT)
 
 
+#场景初始化
 
+scene = Scene()
+
+scene.add_node2d(plane)
     
 
 # func process
@@ -76,7 +82,7 @@ try:
         
         inputmanager.update()
         
-        plane.handle_head_change(inputmanager.input_pitch)
+        plane.handle_head_change(inputmanager.input_pitch, dt)
 
         # physics
         
@@ -85,9 +91,7 @@ try:
         # render
         screen.fill((20, 20, 30))
 
-        render.draw_polygon_item(plane)
-        
-        render.draw_child_polygon_item(plane, plane.wing)
+        render.draw_scene(scene)
 
         pygame.display.flip()
         

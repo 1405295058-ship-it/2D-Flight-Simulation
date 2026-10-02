@@ -7,7 +7,7 @@ class Physics:
         g = 9.81
         
         # 得到大气数据
-        rho = atmosphere.get_density(plane.position[1] / 1000)
+        rho = atmosphere.get_density(plane.position[1])
         
         #飞机的基础数据
         plane_position = plane.position
@@ -71,7 +71,7 @@ class Physics:
         
         plane_velocity += net_acceleration * dt
         plane_position += plane_velocity * dt
-        plane.sync_with_wing()
+        
         
     
         

@@ -1,25 +1,29 @@
 import numpy as np
 from Rendering.RenderItem import RenderItem
-class AirCraft:
+from Rendering.RenderItem import RenderType
+from Scene.Node2d import Node2d
+class AirCraft(Node2d):
     
     
     
     def __init__(self, position , velocity , theta , mass):
         
+        # 初始化 Node2d 的位置、角度、parent、children 等属性
+        super().__init__(position, theta)
+        
+        
+        
         #渲染的
-        
-        
-        
+    
         self.render_item = RenderItem(
-            np.array([[40,5] ,[ -40, 5], [-40, -5], [40, -5], [50, 0] ], dtype = float),
-            (255, 255, 255)
+            RenderType.POLYGON,
+            shape = np.array([[40,5] ,[ -40, 5], [-40, -5], [40, -5], [50, 0] ], dtype = float),
+            color = (255, 255, 255),
             )
         
         
         #位置信息
-        self.position = np.array(position, dtype=float)
         self.velocity = np.array(velocity, dtype=float)
-        self.theta = theta #degree
         
         
         self.mass = mass
@@ -30,15 +34,11 @@ class AirCraft:
         
         self.wing = None
         
-    def sync_with_wing(self):
-        self.wing.position = self.position
-        self.wing.theta = self.theta
-        
     def get_render_item(self)->RenderItem:
         return self.render_item
     
-    def handle_head_change(self, input_pitch:float):
-        self.theta += input_pitch * self.pitch_rate
+    def handle_head_change(self, input_pitch:float, dt:float):
+        self.theta += input_pitch * self.pitch_rate * dt
         
         
     

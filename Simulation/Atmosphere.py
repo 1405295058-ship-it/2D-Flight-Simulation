@@ -31,16 +31,16 @@ class Atmosphere:
     
     
     def get_temperature(self, hight:float)->float:
-        return np.interp(hight, self.altitude, self.temperature)
+        return np.interp(hight/1000, self.altitude, self.temperature)
     
     def get_pressure(self, hight:float)->float:
-        return np.interp(hight, self.altitude, self.pressure)
+        return np.interp(hight/1000, self.altitude, self.pressure)
     
     def get_density(self, hight:float)->float:
-        return np.interp(hight, self.altitude, self.density)
+        return np.interp(hight/1000, self.altitude, self.density)
     
     def get_density_ratio(self, hight:float)->float:
-        return np.interp(hight, self.altitude, self.density_ratio)
+        return np.interp(hight/1000, self.altitude, self.density_ratio)
     
     
         
