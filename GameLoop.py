@@ -38,9 +38,9 @@ wing = Wing(10, "NACA2412", [30.0, 0.0], 0)#surface area, 编号, 相对位置
 
 plane = AirCraft(
     [10,100],#position
-    [100,0],#velocity
+    [14.36,0],#velocity
     10,#theta
-    10000#mass
+    100#mass
     )
 
 plane.wing = wing
@@ -77,7 +77,7 @@ try:
             if event.type == pygame.QUIT:
                 running = False
                 
-                
+
         #input
         
         inputmanager.update()
