@@ -61,6 +61,15 @@ plane_position += plane_velocity * dt
 - Aerodynamic coefficients are interpolated from airfoil data.
 - The current simulation uses a 2D point-mass translational dynamics model.
 
+
+## CFD Validation Study
+
+I am currently investigating the accuracy of NACA 2412 aerodynamic predictions using ANSYS Fluent and XFOIL.
+
+The study includes near-wall mesh design, numerical convergence analysis, and comparison of aerodynamic coefficients and surface distributions.
+
+[Read the detailed CFD study](docs/CFD_Study.md)
+
 ## Data
 - Atmosphere: https://www.engineerlaboratory.com/tables/air-density-vs-altitude
 - Airfoil geometry: NASA airfoil coordinate data
